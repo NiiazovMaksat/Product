@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}
+Create
+{% endblock %}
+    {% block nav %}
+
+    {% endblock %}
+{% block body %}
+
+<form method="post">
+    {% include "partial/form.html" with button_text="Create" %}
+</form>
+{% endblock %}

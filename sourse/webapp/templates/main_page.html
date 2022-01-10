@@ -1,10 +1,15 @@
 {% extends 'base.html' %}
+{% block nav %}
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'create' %}">Create</a>
+      </li>
+{% endblock %}
 
 {% block body %}
 {% for product in product %}
     {% if product.count > 0 %}
         <h4>{{ product.name }}</h4>
-        <p>Остаток: {{ product.category }}</p>
+        <p>Остаток: {{ product.count }}</p>
         <p>Цена: {{ product.price }}</p>
         <a href="{% url 'view' product.pk %}">view more</a>
         <hr>

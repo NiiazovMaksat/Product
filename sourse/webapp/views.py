@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 
+from webapp.forms import ProductForm
 from webapp.models import Product
 
 
@@ -27,3 +28,8 @@ def edit_page(request, pk):
         return render(request, 'edit.html', {'product': product, 'form': form})
     else:
         pass
+
+def create_page(request):
+    if request.method == "GET":
+        form = ProductForm()
+        return render(request, 'create.html', {'form': form})
