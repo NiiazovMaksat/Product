@@ -17,7 +17,7 @@ def edit_page(request, pk):
     product = get_object_or_404(Product, pk=pk)
 
     if request.method == 'GET':
-        form = Product(initial={
+        form = ProductForm(initial={
             'name': product.name,
             'description': product.description,
             'category': product.category,
@@ -25,9 +25,18 @@ def edit_page(request, pk):
             'price': product.price
         })
 
-        return render(request, 'edit.html', {'product': product, 'form': form})
+        return render(request, 'edit.html', {'product': product, 'form': form, 'STATUS_CHOICES': STATUS_CHOICES})
     else:
-        pass
+        form = ProductForm(data=request.POST)
+        if form.is_valid():
+            product.name = form.cleaned_data.get('name')
+            product.description = form.cleaned_data.get('description')
+            product.status = form.cleaned_data.get('status')
+            product.count = form.cleaned_data.get('count')
+            product.price = form.cleaned_data.get('price')
+            product.save()
+            return redirect("main")
+        return render(request, 'edit.html', {'product': product, 'form': form, 'STATUS_CHOICES': STATUS_CHOICES})
 
 def create_page(request):
     if request.method == "GET":
@@ -45,3 +54,10 @@ def create_page(request):
             return redirect("main")
 
         return render(request, 'create.html', {'form': form, 'STATUS_CHOICES': STATUS_CHOICES})
+    def delete(request, pk):
+        product = get_object_or_404(Product, pk=pk)
+        if request.method == 'GET':
+            return render(request, 'delete.html', {'product': product})
+        else:
+            product.delete()
+            return redirect("main")

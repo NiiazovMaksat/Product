@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Delete{% endblock %}
+{% block nav %}
+
+{% endblock %}
+{% block body %}
+
+    <form method="post">
+    {% csrf_token %}
+    <h3>You want to delete {{ product.name }}  ? </h3>
+        <input class="delete_button" type="submit" value="Yes">
+        <form action="{% url 'main' %}" target="_blank">
+        <button class="delete_button">No</button>
+    </form>
+
+
+{% endblock %}
