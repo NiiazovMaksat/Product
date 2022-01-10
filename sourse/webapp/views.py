@@ -1,7 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 
 from webapp.forms import ProductForm
-from webapp.models import Product
+from webapp.models import Product, STATUS_CHOICES
 
 
 def main_page(request):
@@ -33,3 +33,15 @@ def create_page(request):
     if request.method == "GET":
         form = ProductForm()
         return render(request, 'create.html', {'form': form})
+    else:
+        form = ProductForm(data=request.POST)
+        if form.is_valid():
+            name = form.cleaned_data.get('name')
+            description = form.cleaned_data.get('description')
+            category = form.cleaned_data.get('category')
+            count = form.cleaned_data.get('count')
+            price = form.cleaned_data.get('price')
+            new = Product.objects.create(name=name, description=description, category=category, count=count, price=price)
+            return redirect("main")
+
+        return render(request, 'create.html', {'form': form, 'STATUS_CHOICES': STATUS_CHOICES})
