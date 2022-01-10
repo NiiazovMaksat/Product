@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}
+View
+{% endblock %}
+{% block nav %}
+      <div class="navbar-nav">
+        <a class="nav-link" href="#">Edit</a>
+      </div>
+      <div class="navbar-nav">
+        <a class="nav-link" href="#">Delete</a>
+      </div>
+{% endblock %}
+{% block body %}
+    <h5>Название: {{ product.name }}</h5>
+    <p>Категория: {{ product.category }}</p>
+    <p>Количество: {{ product.count }}</p>
+    <p>Цена: {{ product.price }}</p>
+    <p>Описание:</p>
+    <p>{{ product.description }}</p>
+{% endblock %}

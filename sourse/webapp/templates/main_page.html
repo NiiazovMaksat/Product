@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block body %}
+{% for product in product %}
+    {% if product.count > 0 %}
+        <h4>{{ product.name }}</h4>
+        <p>Остаток: {{ product.category }}</p>
+        <p>Цена: {{ product.price }}</p>
+        <a href="{% url 'view' product.pk %}">view more</a>
+        <hr>
+    {% endif %}
+{% endfor %}
+
+{% endblock %}
+
