@@ -54,10 +54,10 @@ def create_page(request):
             return redirect("main")
 
         return render(request, 'create.html', {'form': form, 'STATUS_CHOICES': STATUS_CHOICES})
-    def delete(request, pk):
-        product = get_object_or_404(Product, pk=pk)
-        if request.method == 'GET':
-            return render(request, 'delete.html', {'product': product})
-        else:
-            product.delete()
-            return redirect("main")
+def delete(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    if request.method == 'GET':
+        return render(request, 'delete.html', {'product': product})
+    else:
+        product.delete()
+        return redirect("main")
