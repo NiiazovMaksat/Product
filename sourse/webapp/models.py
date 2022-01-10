@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-STATUS_CHOICES = [('other', 'Другое')]
+STATUS_CHOICES = [('other', 'Другое')('TV', 'Телевизоры')('notebooks','')('telephone','Телефоны')('keyboard','Клавиатуры')('monitors','Мониторы')('pc','компьютеры')]
 
 class Product(models.Model):
     name = models.CharField(max_length=50, verbose_name="Имя")
