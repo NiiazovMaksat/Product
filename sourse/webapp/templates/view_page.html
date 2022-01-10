@@ -7,7 +7,7 @@ View
         <a class="nav-link" href="{% url 'edit' product.pk %}">Edit</a>
       </div>
       <div class="navbar-nav">
-        <a class="nav-link" href="#">Delete</a>
+        <a class="nav-link" href="{% url 'delete' product.pk %}">Delete</a>
       </div>
 {% endblock %}
 {% block body %}
